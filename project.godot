@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Nebulae- Conquer"
+run/main_scene="res://nebulae/Nebulae.tscn"
 config/icon="res://icon.png"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 
