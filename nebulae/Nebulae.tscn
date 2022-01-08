@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/images/nebulae-bg-00.png" type="Texture" id=1]
 [ext_resource path="res://nebulae/scenes/Planet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nebulae/scripts/Nebulae.gd" type="Script" id=3]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -19,7 +20,8 @@ load_path = "res://.import/planet-yellow.png-654cc9a468621d54bd5ab8f74a863d4c.st
 resource_local_to_scene = true
 radius = 45.0
 
-[node name="Nebulae" type="Node2D"]
+[node name="Nebulae" type="Node2D" groups=["nebulae"]]
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -50,6 +52,10 @@ shape = SubResource( 5 )
 
 [node name="Planet" parent="Planets" instance=ExtResource( 2 )]
 position = Vector2( 113, 83 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
 
 [editable path="Planets/Planet2"]
 [editable path="Planets/Planet3"]
