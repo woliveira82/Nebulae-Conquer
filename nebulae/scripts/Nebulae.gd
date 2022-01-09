@@ -20,9 +20,9 @@ var dragging = false
 export var snap_distance = 50
 
 
-
 func _ready():
 	print(planet_list)
+
 
 func _process(delta):
 	update()
@@ -67,8 +67,10 @@ func _snap_to_planet(position, action):
 
 
 func _create_attack_fleet(origin, destiny):
-	var space_ship = SpaceShip.instance()
-	space_ship.position = origin.position
-	space_ship.destiny = destiny.position
-	ships.add_child(space_ship)
-	
+	if origin.strength > 10:
+		origin.strength -= 10
+		var space_ship = SpaceShip.instance()
+		space_ship.position = origin.position
+		space_ship.destiny = destiny
+		space_ship.team = origin.team
+		ships.add_child(space_ship)
