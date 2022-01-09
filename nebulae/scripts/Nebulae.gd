@@ -1,11 +1,7 @@
 extends Node2D
 
-var line_from = Vector2.ZERO
-var line_to = Vector2.ZERO
-var origin_planet
-var destiny_planet
-var dragging = false
-export var snap_distance = 50
+const SpaceShip = preload("res://nebulae/scenes/SpaceShip.tscn")
+
 enum {
 	PRESS,
 	DRAG,
@@ -13,6 +9,17 @@ enum {
 }
 
 onready var planet_list = $Planets.get_children()
+onready var ships = $Ships
+
+var line_from = Vector2.ZERO
+var line_to = Vector2.ZERO
+var origin_planet
+var destiny_planet
+var dragging = false
+
+export var snap_distance = 50
+
+
 
 func _ready():
 	print(planet_list)
@@ -60,4 +67,8 @@ func _snap_to_planet(position, action):
 
 
 func _create_attack_fleet(origin, destiny):
-	print('attack')
+	var space_ship = SpaceShip.instance()
+	space_ship.position = origin.position
+	space_ship.destiny = destiny.position
+	ships.add_child(space_ship)
+	
