@@ -36,5 +36,3 @@ planet_size = 1
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
-
-[editable path="Planets/Planet"]

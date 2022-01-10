@@ -14,9 +14,9 @@ onready var timer = $Timer
 func _ready():
 	var size = 0.05 * planet_size
 	sprite.set_scale(Vector2(0.14 + size * planet_size, 0.14 + size * planet_size))
-	set_team(team)
+	update_team(team)
 	max_strength = 30 + (10 * planet_size)
-	set_raise_interval(5 - planet_size)
+	set_raise_interval(4 - planet_size)
 	if team == 0:
 		set_raise_interval(raise_interval * 2)
 
@@ -26,6 +26,7 @@ func _process(delta):
 
 
 func set_raise_interval(value):
+	value = 4 - value
 	timer.wait_time = value
 	raise_interval = value
 
@@ -39,12 +40,16 @@ func add_troops(value):
 
 
 func take_damage(damage, attacker):
-	strength -= damage
+	if attacker != team:
+		strength -= damage
+	else:
+		strength += damage
 	if strength < 0:
-		set_team(attacker)
+		update_team(attacker)
 		strength = -strength
 
 
-func set_team(value):
+func update_team(value):
 	team = value
 	sprite.set_frame_coords(Vector2(1, team))
+	set_raise_interval(planet_size)
