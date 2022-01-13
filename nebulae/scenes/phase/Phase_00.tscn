@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://nebulae/scenes/game/Star.tscn" type="PackedScene" id=1]
+
+[node name="Phase_01" type="Node2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Stars" type="Node" parent="."]
+
+[node name="Star" parent="Stars" instance=ExtResource( 1 )]
+position = Vector2( 522, 302 )
+
+[node name="Units" type="Node" parent="."]
+
+[editable path="Stars/Star"]

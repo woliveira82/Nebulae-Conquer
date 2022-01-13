@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://nebulae/scenes/game/Planet.tscn" type="PackedScene" id=2]
+
+[node name="Phase_01" type="Node2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Stars" type="Node" parent="."]
+
+[node name="Units" type="Node" parent="."]
+
+[node name="Planet" parent="." instance=ExtResource( 2 )]
+position = Vector2( 241, 292 )
+
+[node name="Planet2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 765, 300 )

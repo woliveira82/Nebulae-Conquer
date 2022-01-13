@@ -1,76 +1,44 @@
 extends Node2D
 
-const SpaceShip = preload("res://nebulae/scenes/SpaceShip.tscn")
-
-enum {
-	PRESS,
-	DRAG,
-	RELEASE
-}
-
-onready var planet_list = $Planets.get_children()
-onready var ships = $Ships
-
-var line_from = Vector2.ZERO
-var line_to = Vector2.ZERO
-var origin_planet
-var destiny_planet
-var dragging = false
-
-export var snap_distance = 50
-
+var current_phase
+var stars
+var player_team
 
 func _ready():
-	print(planet_list)
+	player_team = GameControl.player_team
+	_instantiate_current_phase(GameControl.campaign_phase)
 
 
 func _process(delta):
-	update()
+	_verify_game_end()
 
 
-func _draw():
-	if dragging and line_from:
-		draw_line(line_from, line_to, Color(1.0, 1.0, 1.0, 0.4), 4, true)
-
-
-func _input(event):
-	if event is InputEventScreenTouch:
-		dragging = event.pressed
-		if event.pressed:
-			line_from = _snap_to_planet(event.position, PRESS)
-			line_to = event.position
-		else:
-			line_to = _snap_to_planet(event.position, RELEASE)
+func _instantiate_current_phase(phase):
+	var CurrentPhase
+	if not phase:
+		CurrentPhase = preload("res://nebulae/scenes/phase/Phase_00.tscn")
 	else:
-		if dragging:
-			line_to = _snap_to_planet(event.position, DRAG)
+		var phase_path = "res://nebulae/scenes/phase/Phase_%02d.tscn"
+		CurrentPhase = load(phase_path % phase)
+	
+	current_phase = CurrentPhase.instance()
+	stars = current_phase.find_node("Stars").get_children()
+	add_child(current_phase)
 
 
-func _snap_to_planet(position, action):
-	for planet in planet_list:
-		if position.distance_to(planet.global_position) < snap_distance:
-			if action == PRESS:
-				origin_planet = planet
-				destiny_planet = null
-				return planet.global_position
-			elif action == DRAG:
-				return planet.global_position
-			else:
-				destiny_planet = planet
-				if origin_planet != destiny_planet and origin_planet != null:
-					_create_attack_fleet(origin_planet, destiny_planet)
-				return planet.global_position
-	if action == PRESS:
-		origin_planet = null
-		return null
-	return position
+func _verify_game_end():
+	var one_player_star = false
+	var other_player_star = false
+	for star in stars:
+		if star.team == player_team:
+			one_player_star = true
+		else:
+			other_player_star = true
+
+	if not one_player_star:
+		print('YOU LOSE')
+	
+	if not other_player_star:
+		print('YOU WIN')
 
 
-func _create_attack_fleet(origin, destiny):
-	if origin.strength > 10:
-		origin.strength -= 10
-		var space_ship = SpaceShip.instance()
-		space_ship.position = origin.position
-		space_ship.destiny = destiny
-		space_ship.team = origin.team
-		ships.add_child(space_ship)

@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneDirector="*res://nebulae/scenes/control/SceneDirector.tscn"
+GameControl="*res://nebulae/scripts/control/GameControl.gd"
 
 [importer_defaults]
 

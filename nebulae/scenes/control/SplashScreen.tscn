@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://nebulae/scripts/SplashScreen.gd" type="Script" id=1]
+[ext_resource path="res://nebulae/scripts/control/SplashScreen.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/badblock.png-5d8e083d8688e0836d21f02f77330eab.stex"

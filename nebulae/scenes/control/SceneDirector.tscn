@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://nebulae/scripts/SceneDirector.gd" type="Script" id=1]
+[ext_resource path="res://nebulae/scripts/control/SceneDirector.gd" type="Script" id=1]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
