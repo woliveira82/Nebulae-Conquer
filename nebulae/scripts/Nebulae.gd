@@ -4,14 +4,21 @@ var current_phase
 var stars
 var player_team
 
+
 func _ready():
+#	add_to_group("Nebulae")
 	player_team = GameControl.player_team
 	_instantiate_current_phase(GameControl.campaign_phase)
-
+	
 
 func _process(delta):
-	_verify_game_end()
+	pass
+#	_verify_game_end()
 
+
+func star_touch(star):
+	print('star touch')
+	print(star)
 
 func _instantiate_current_phase(phase):
 	var CurrentPhase
@@ -40,5 +47,4 @@ func _verify_game_end():
 	
 	if not other_player_star:
 		print('YOU WIN')
-
-
+ 

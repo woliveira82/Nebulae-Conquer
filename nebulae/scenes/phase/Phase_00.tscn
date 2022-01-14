@@ -5,6 +5,7 @@
 [node name="Phase_01" type="Node2D"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+visible = false
 
 [node name="Stars" type="Node" parent="."]
 
