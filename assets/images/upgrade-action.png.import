@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/planets.png-62245e0f43db1be48f1a00fdf15149a5.stex"
+path="res://.import/upgrade-action.png-d2edf6ef20717e460d5d3c3a0339abe8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/planets.png"
-dest_files=[ "res://.import/planets.png-62245e0f43db1be48f1a00fdf15149a5.stex" ]
+source_file="res://assets/images/upgrade-action.png"
+dest_files=[ "res://.import/upgrade-action.png-d2edf6ef20717e460d5d3c3a0339abe8.stex" ]
 
 [params]
 

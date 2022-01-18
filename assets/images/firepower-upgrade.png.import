@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/planets.png-62245e0f43db1be48f1a00fdf15149a5.stex"
+path="res://.import/firepower-upgrade.png-7cdea937413407aca84d53e5c6a2bf42.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/planets.png"
-dest_files=[ "res://.import/planets.png-62245e0f43db1be48f1a00fdf15149a5.stex" ]
+source_file="res://assets/images/firepower-upgrade.png"
+dest_files=[ "res://.import/firepower-upgrade.png-7cdea937413407aca84d53e5c6a2bf42.stex" ]
 
 [params]
 

@@ -1,42 +1,54 @@
 extends Node2D
 
 export var team = 0
-export var size = 1
+export var size = 0
+
+onready var timer = $Timer
 
 var slots = []
-var defenses : int setget set_defenses
-var max_defenses : int
+var storage : int = 0
+
+var max_storage : int
 var firepower : int
-var production : int
+var next_build : String = ""
+var build_left : int
 
 
 func _ready():
 	_upgrade_stats()
 
 
-func set_defenses(value: int):
-	defenses += value
-	if defenses > max_defenses:
-		defenses = max_defenses
-	elif defenses < 0:
-		defenses = 0
-
-
-func build(upgrade: String):
-	slots.append(upgrade)
-	_upgrade_stats()
-
-
 func _upgrade_stats():
-	var size_defenses = 80 * pow(1.5, size -1)
-	var slots_defenses = 1 + slots.count("Defenses") / 10
-	max_defenses = size_defenses * slots_defenses
-	
-	firepower = 2 + slots.count("Firepower") * 2
-	
-	production = slots.count("Factory") * 10 + 20
+	max_storage = 40 + (size * 20) + (slots.count("Station") * 10)
+	firepower = 1 + slots.count("Firepower") * 3
+	timer.wait_time = 4 - slots.count("Factory") * 0.2
+	build_left = 10
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventScreenTouch and event.pressed:
 		get_tree().call_group("Nebulae", "star_touch", self)
+
+
+func _on_Timer_timeout():
+	if next_build == "":
+		storage += 1
+		if storage > max_storage:
+			storage = max_storage
+	else:
+		build_left -= 1
+		if build_left <= 0:
+			add_build()
+	
+	$Label.text = str(storage)
+
+
+func start_build(upgrade: String):
+	if slots.size() < 2 + size * 2:
+		next_build = upgrade
+
+
+func add_build():
+	slots.append(next_build)
+	next_build = ""
+	_upgrade_stats()
