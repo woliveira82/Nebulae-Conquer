@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/images/upgrade-action.png" type="Texture" id=1]
 [ext_resource path="res://nebulae/scripts/Nebulae.gd" type="Script" id=2]
@@ -9,6 +9,18 @@
 [ext_resource path="res://assets/images/actions.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/firepower-upgrade.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/station-upgrade.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/60-attack.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/40-attack.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/30-attack.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/50-attack.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/20-attack.png" type="Texture" id=14]
+[ext_resource path="res://assets/images/10-attack.png" type="Texture" id=15]
+[ext_resource path="res://nebulae/scripts/game/Attack20.gd" type="Script" id=16]
+[ext_resource path="res://nebulae/scripts/game/Attack60.gd" type="Script" id=17]
+[ext_resource path="res://nebulae/scripts/game/Attack50.gd" type="Script" id=18]
+[ext_resource path="res://nebulae/scripts/game/Attack40.gd" type="Script" id=19]
+[ext_resource path="res://nebulae/scripts/game/Attack30.gd" type="Script" id=20]
+[ext_resource path="res://nebulae/scripts/game/Attack10.gd" type="Script" id=21]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 36.1248
@@ -63,6 +75,70 @@ tracks/3/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("StarActions/AttackSizes:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "hide_options"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("StarActions:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StarActions/Actions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StarActions/AttackSizes:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("StarActions/Upgrades:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "show_actions"
@@ -114,6 +190,58 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "show_attacks"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("StarActions:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StarActions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StarActions/Actions:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("StarActions/AttackSizes:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -246,11 +374,86 @@ scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
 
 [node name="AttackSizes" type="Node2D" parent="StarActions"]
+visible = false
+
+[node name="Attack10" type="Sprite" parent="StarActions/AttackSizes"]
+position = Vector2( 0, -61 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 15 )
+script = ExtResource( 21 )
+
+[node name="Attack10" type="Area2D" parent="StarActions/AttackSizes/Attack10"]
+scale = Vector2( 1.7, 1.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarActions/AttackSizes/Attack10/Attack10"]
+shape = SubResource( 1 )
+
+[node name="Attack20" type="Sprite" parent="StarActions/AttackSizes"]
+position = Vector2( 53, -31 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 14 )
+script = ExtResource( 16 )
+
+[node name="Attack20" type="Area2D" parent="StarActions/AttackSizes/Attack20"]
+scale = Vector2( 1.7, 1.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarActions/AttackSizes/Attack20/Attack20"]
+shape = SubResource( 1 )
+
+[node name="Attack30" type="Sprite" parent="StarActions/AttackSizes"]
+position = Vector2( 53, 31 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
+script = ExtResource( 20 )
+
+[node name="Attack30" type="Area2D" parent="StarActions/AttackSizes/Attack30"]
+scale = Vector2( 1.7, 1.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarActions/AttackSizes/Attack30/Attack30"]
+shape = SubResource( 1 )
+
+[node name="Attack40" type="Sprite" parent="StarActions/AttackSizes"]
+position = Vector2( 0, 61 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+script = ExtResource( 19 )
+
+[node name="Attack40" type="Area2D" parent="StarActions/AttackSizes/Attack40"]
+scale = Vector2( 1.7, 1.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarActions/AttackSizes/Attack40/Attack40"]
+shape = SubResource( 1 )
+
+[node name="Attack50" type="Sprite" parent="StarActions/AttackSizes"]
+position = Vector2( -53, 31 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 13 )
+script = ExtResource( 18 )
+
+[node name="Attack50" type="Area2D" parent="StarActions/AttackSizes/Attack50"]
+scale = Vector2( 1.7, 1.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarActions/AttackSizes/Attack50/Attack50"]
+shape = SubResource( 1 )
+
+[node name="Attack60" type="Sprite" parent="StarActions/AttackSizes"]
+position = Vector2( -53, -31 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+script = ExtResource( 17 )
+
+[node name="Attack60" type="Area2D" parent="StarActions/AttackSizes/Attack60"]
+scale = Vector2( 1.7, 1.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarActions/AttackSizes/Attack60/Attack60"]
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StarActions"]
 root_node = NodePath("../..")
 anims/RESET = SubResource( 2 )
+anims/hide_options = SubResource( 5 )
 anims/show_actions = SubResource( 3 )
+anims/show_attacks = SubResource( 6 )
 anims/show_upgrades = SubResource( 4 )
 
 [connection signal="input_event" from="StarActions/Upgrades/TechUpgrade/TechUpgrade" to="StarActions" method="_on_TechUpgrade_input_event"]
@@ -259,3 +462,9 @@ anims/show_upgrades = SubResource( 4 )
 [connection signal="input_event" from="StarActions/Upgrades/StationUpgrade/StationUpgrade" to="StarActions" method="_on_StationUpgrade_input_event"]
 [connection signal="input_event" from="StarActions/Actions/AttackAction/AttackArea" to="StarActions" method="_on_AttackArea_input_event"]
 [connection signal="input_event" from="StarActions/Actions/UpgradeAction/UpgradeArea" to="StarActions" method="_on_UpgradeArea_input_event"]
+[connection signal="input_event" from="StarActions/AttackSizes/Attack10/Attack10" to="StarActions" method="_on_Attack10_input_event"]
+[connection signal="input_event" from="StarActions/AttackSizes/Attack20/Attack20" to="StarActions" method="_on_Attack20_input_event"]
+[connection signal="input_event" from="StarActions/AttackSizes/Attack30/Attack30" to="StarActions" method="_on_Attack30_input_event"]
+[connection signal="input_event" from="StarActions/AttackSizes/Attack40/Attack40" to="StarActions" method="_on_Attack40_input_event"]
+[connection signal="input_event" from="StarActions/AttackSizes/Attack50/Attack50" to="StarActions" method="_on_Attack50_input_event"]
+[connection signal="input_event" from="StarActions/AttackSizes/Attack60/Attack60" to="StarActions" method="_on_Attack60_input_event"]

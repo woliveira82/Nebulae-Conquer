@@ -14,4 +14,7 @@ position = Vector2( 522, 302 )
 
 [node name="Units" type="Node" parent="."]
 
+[node name="Star" parent="." instance=ExtResource( 1 )]
+position = Vector2( 811, 412 )
+
 [editable path="Stars/Star"]

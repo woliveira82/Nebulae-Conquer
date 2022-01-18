@@ -3,7 +3,6 @@
 [ext_resource path="res://nebulae/scripts/game/Star.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=2]
-flags = 4
 load_path = "res://.import/planets.png-62245e0f43db1be48f1a00fdf15149a5.stex"
 
 [sub_resource type="CircleShape2D" id=1]
