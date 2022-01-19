@@ -1,13 +1,6 @@
 extends Node2D
 
-enum {
-	GRAY,
-	YELLOW,
-	GREEN,
-	RED,
-	BLUE
-}
-var team = GRAY
+var team = 0
 var strength = 10
 var destiny = null
 var speed = 100
@@ -24,7 +17,7 @@ func _process(delta):
 	position += (destiny.position - global_position).clamped(speed * delta)
 	update()
 	if position == destiny.position:
-		destiny.fleet_arrive(10, team)
+		destiny.fleet_arrive(strength, team)
 		queue_free()
 
 

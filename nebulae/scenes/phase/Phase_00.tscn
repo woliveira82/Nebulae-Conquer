@@ -10,11 +10,15 @@ visible = false
 [node name="Stars" type="Node" parent="."]
 
 [node name="Star" parent="Stars" instance=ExtResource( 1 )]
-position = Vector2( 522, 302 )
+position = Vector2( 164, 275 )
+team = 1
+
+[node name="Star2" parent="Stars" instance=ExtResource( 1 )]
+position = Vector2( 687, 137 )
+
+[node name="Star3" parent="Stars" instance=ExtResource( 1 )]
+position = Vector2( 578, 428 )
 
 [node name="Units" type="Node" parent="."]
-
-[node name="Star" parent="." instance=ExtResource( 1 )]
-position = Vector2( 811, 412 )
 
 [editable path="Stars/Star"]

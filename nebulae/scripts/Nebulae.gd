@@ -18,11 +18,21 @@ func _ready():
 
 
 func star_touch(star):
-	if not action_selected:
+	if not action_selected and not star_selected:
 		star_selected = star
 		star_actions.show_actions(star)
+	elif star == star_selected:
+		_hide_actions()
 	elif action_selected == "attack":
-		_create_attack_fleet(star_selected, star)
+		_create_attack_fleet(star_selected, star, attack_force)
+		_hide_actions()
+
+
+func _hide_actions():
+		star_actions.hide_actions()
+		star_selected = null
+		action_selected = null
+		attack_force = 0
 
 
 func _instantiate_current_phase(phase):
@@ -38,7 +48,7 @@ func _instantiate_current_phase(phase):
 	add_child(current_phase)
 
 
-func _verify_game_end():
+func verify_game_end():
 	var one_player_star = false
 	var other_player_star = false
 	for star in stars:
@@ -56,13 +66,15 @@ func _verify_game_end():
 
 func set_attack_action(attack):
 	attack_force = attack
+	print(attack_force)
 	action_selected = "attack"
 
 
-func _create_attack_fleet(attacker, target):
-	attacker.storage -= attack_force
+func _create_attack_fleet(attacker, target, fleet_force):
+	attacker.sub_storage(fleet_force, attacker.team)
 	var fighter_fleet = FighetFleet.instance()
 	fighter_fleet.position = attacker.position
+	fighter_fleet.team = attacker.team
 	fighter_fleet.destiny = target
-	fighter_fleet.strength = attack_force
+	fighter_fleet.strength = fleet_force
 	add_child(fighter_fleet)

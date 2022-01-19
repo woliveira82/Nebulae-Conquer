@@ -15,12 +15,8 @@ func show_actions(star_selected):
 	animation_player.play("show_actions")
 
 
-func _hide_actions():
-	self.visible = false
-	self.position = star.position
-	upgrades.visible = false
-	actions.visible = true
-	attack_sizes.visible = false
+func hide_actions():
+	animation_player.play("hide_options")
 	star = null
 
 
