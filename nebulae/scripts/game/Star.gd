@@ -23,7 +23,10 @@ func _ready():
 func _upgrade_stats():
 	max_storage = 40 + (size * 20) + (slots.count("Station") * 10)
 	firepower = 1 + slots.count("Firepower") * 3
-	timer.wait_time = 4 - slots.count("Factory") * 0.2
+	var wait_time = 4 - slots.count("Factory") * 0.5
+	if team == 0:
+		wait_time *= 2
+	timer.wait_time = wait_time
 	build_left = 8
 	$Label.text = str(storage)
 

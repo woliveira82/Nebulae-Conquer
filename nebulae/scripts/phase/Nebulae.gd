@@ -18,11 +18,11 @@ func _ready():
 
 
 func star_touch(star):
-	if not action_selected and not star_selected:
+	if star == star_selected:
+		_hide_actions()
+	elif not star_selected or not action_selected:
 		star_selected = star
 		star_actions.show_actions(star)
-	elif star == star_selected:
-		_hide_actions()
 	elif action_selected == "attack":
 		_create_attack_fleet(star_selected, star, attack_force)
 		_hide_actions()
@@ -66,7 +66,6 @@ func verify_game_end():
 
 func set_attack_action(attack):
 	attack_force = attack
-	print(attack_force)
 	action_selected = "attack"
 
 
